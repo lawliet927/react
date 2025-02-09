@@ -20,31 +20,13 @@ const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
-// Habilitar CORS para todas las solicitudes
+
+// Habilitar CORS para todas las solicitudes desde el frontend en Render
 app.use(cors({
     origin: 'https://mern-frontend.onrender.com',  // La URL de tu frontend en Render
-  }));
-  
-  app.get('/api/data', (req, res) => {
-    res.json({ message: 'Datos cargados correctamente' });
-  });
-  
-  app.listen(5000, () => {
-    console.log('Servidor corriendo en http://localhost:5000');
-  });
+}));
 
-// 📌 Configuración de subida de imágenes con Multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Nombre único
-    }
-});
-const upload = multer({ storage });
-
-// 📌 Conexión a MongoDB
+// 📌 Conexión a MongoDB en MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -195,14 +177,14 @@ app.delete('/api/propietarios/:id', async (req, res) => {
 // 📌 Agregar rutas CRUD para Fechas de Entrega
 app.get('/api/fechasEntrega', async (req, res) => {
     try {
-        const fechas = await FechaEntrega.find().populate('tienda'); // Traer con la info de la tienda
+        const fechas = await FechaEntrega.find().populate('tienda');
         res.json(fechas);
     } catch (error) {
         console.error("Error al obtener fechas de entrega:", error);
         res.status(500).json({ error: 'Error al obtener fechas de entrega' });
     }
 });
-// fecha entrega
+
 app.post('/api/fechasEntrega', async (req, res) => {
     try {
         const nuevaFecha = new FechaEntrega({
@@ -239,15 +221,13 @@ app.delete('/api/fechasEntrega/:id', async (req, res) => {
     }
 });
 
-
-
 // 📌 Ruta principal
 app.get('/', (req, res) => {
     res.send('✅ API funcionando');
 });
 
-// 📌 Iniciar el servidor
+// 📌 Iniciar el servidor (Render asigna el puerto automáticamente)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });
