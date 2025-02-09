@@ -20,6 +20,18 @@ const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
+// Habilitar CORS para todas las solicitudes
+app.use(cors({
+    origin: 'https://mern-frontend.onrender.com',  // La URL de tu frontend en Render
+  }));
+  
+  app.get('/api/data', (req, res) => {
+    res.json({ message: 'Datos cargados correctamente' });
+  });
+  
+  app.listen(5000, () => {
+    console.log('Servidor corriendo en http://localhost:5000');
+  });
 
 // 📌 Configuración de subida de imágenes con Multer
 const storage = multer.diskStorage({
