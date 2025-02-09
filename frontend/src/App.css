@@ -1,0 +1,155 @@
+/* 🔥 General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🌙 Fondo general con degradado épico */
+body {
+  background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
+  color: white;
+}
+
+/* 📌 Contenedor Principal */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* 🚀 Navbar Insano */
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+  color: #ffcc00;
+}
+
+/* 🏆 Tarjetas Glassmorphism */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* 🎭 Botones Insanos */
+.btn {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+  background: #ffcc00;
+  color: #222;
+}
+
+.btn-primary:hover {
+  background: #ffaa00;
+}
+
+.btn-warning {
+  background: #ff5733;
+  color: white;
+}
+
+.btn-warning:hover {
+  background: #cc4400;
+}
+
+.btn-danger {
+  background: #d90000;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #a50000;
+}
+
+/* 📊 Tablas */
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 🎭 Animaciones */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.app-container {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .navbar {
+      text-align: center;
+  }
+
+  .btn {
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  table {
+      font-size: 14px;
+  }
+}
+
+
